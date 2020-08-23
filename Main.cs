@@ -17,7 +17,8 @@ namespace AROR2 {
 		public CharacterMaster Cmaster;
 		public TeamManager Tmanager;
 		public PurchaseInteraction Pinteraction;
-		public UnityEngine.Object[] test; 
+		public UnityEngine.Object[] Pinterobj;
+	    	public UnityEngine.Object[] Tinterobj; 
         int itemindex = 0;
         public void Start() {
 			GetObject();
@@ -31,7 +32,8 @@ namespace AROR2 {
 			Pinteraction = FindObjectOfType<PurchaseInteraction>();
 			Tmanager = FindObjectOfType<TeamManager>();
 			Cmotor = FindObjectOfType<CharacterMotor>();
-			test = UnityEngine.Object.FindObjectsOfType(typeof(PurchaseInteraction));
+			Pinterobj = UnityEngine.Object.FindObjectsOfType(typeof(PurchaseInteraction));
+			Tinterobj = UnityEngine.Object.FindObjectsOfType(typeof(TeleporterInteraction));
 			//---------------------------------------------------------------------\\
 		}
         private void Update(){
@@ -188,7 +190,7 @@ namespace AROR2 {
 		}
 		public void esp()
         {
-			foreach (PurchaseInteraction Pinteraction in test)
+			foreach (PurchaseInteraction Pinteraction in Pinterobj)
 			{
 				if (Pinteraction.available)
 				{
@@ -201,7 +203,7 @@ namespace AROR2 {
 					}
 				}
 			}
-			foreach (TeleporterInteraction teleporterInteraction in UnityEngine.Object.FindObjectsOfType(typeof(TeleporterInteraction)))
+			foreach (TeleporterInteraction teleporterInteraction in Tinterobj)
 			{
 				Vector3 vector2 = Camera.main.WorldToScreenPoint(teleporterInteraction.transform.position);
 				if ((double)vector2.z > 0.01)
